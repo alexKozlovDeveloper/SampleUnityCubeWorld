@@ -21,4 +21,26 @@ public class CubeFactory : MonoBehaviour
     {
 	
 	}
+
+    private GameObject GetCube(GameObject prefab, Vector3 position, Quaternion rotation)
+    {
+        var cube = Instantiate(prefab, position, rotation) as GameObject;
+
+        return cube;
+    }
+
+    public GameObject GetDirtBlock(Vector3 position, Quaternion rotation)
+    {
+        return GetCube(DirtCubePrefab, position, rotation);
+    }
+
+    public GameObject GetRockBlock(Vector3 position, Quaternion rotation)
+    {
+        return GetCube(RockCubePrefab, position, rotation);
+    }
+
+    public GameObject GetGrassBlock(Vector3 position, Quaternion rotation)
+    {
+        return GetCube(GrassCubePrefab, position, rotation);
+    }
 }

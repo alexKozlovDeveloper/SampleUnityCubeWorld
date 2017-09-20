@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Game.Core.CoreGameObjects
-{
+
     public class Map
     {
         public List<Chunk> Chunks { get; private set; }
@@ -15,4 +13,4 @@ namespace Game.Core.CoreGameObjects
             Chunks = new List<Chunk>();
         }
     }
-}
+

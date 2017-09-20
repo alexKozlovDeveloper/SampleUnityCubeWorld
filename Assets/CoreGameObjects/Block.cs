@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Game.Core.CoreGameObjects
-{
-    public class Block
+
+public class Block
     {
         private GameObject _cube;
 
@@ -17,4 +15,4 @@ namespace Game.Core.CoreGameObjects
         }
 
     }
-}
+

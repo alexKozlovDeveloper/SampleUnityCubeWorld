@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Game.Core.CoreGameObjects;
+using UnityEngine;
 
 namespace Game.Core.Helpers
 {
     public static class ChunkHelper
     {
-        public static List<List<List<Block>>> GetEmptyChunkContent()
+        public static List<List<List<Block>>> GetEmptyChunkContent(Vector3 chunkPosition)
         {
             var cube = new List<List<List<Block>>>();
 
@@ -23,7 +24,13 @@ namespace Game.Core.Helpers
 
                     for (var k = 0; k < 8; k++)
                     {
-                        list.Add(new Block());
+                        var position = new Vector3(i * 0.25f + chunkPosition.x,
+                                                   j * 0.25f + chunkPosition.y,
+                                                   k * 0.25f + chunkPosition.z);
+                        
+                        var rotation = new Quaternion(0, 0, 0, 0);
+
+                        list.Add(new Block(CubeFactory.Instance.GetDirtBlock(position, rotation)));
                     }
 
                     square.Add(list);

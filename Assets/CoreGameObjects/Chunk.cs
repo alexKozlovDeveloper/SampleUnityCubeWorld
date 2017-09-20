@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Game.Core.Helpers;
 using UnityEngine;
 
-namespace Game.Core.CoreGameObjects
-{
-    public class Chunk
+
+public class Chunk
     {
         public List<List<List<Block>>> Content { get; private set; }
 
@@ -35,4 +32,4 @@ namespace Game.Core.CoreGameObjects
             Content = ChunkHelper.GetEmptyChunkContent(position);
         }
     }
-}
+
