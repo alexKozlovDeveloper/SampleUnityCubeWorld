@@ -7,15 +7,15 @@ using UnityEngine;
 
 public static class ChunkHelper
 {
-    public static List<List<List<Block>>> GetEmptyChunkContent(Vector3 chunkPosition)
+    public static List<List<List<Block>>> GetDefaultChunkContent(Vector3 chunkPosition, Chunk chunk)
     {
         var cube = new List<List<List<Block>>>();
 
-        for (var x = 0; x < GlobalConstants.ChunkSize; x++)
+        for (var x = 0; x < GlobalConstants.ChunkSizeX; x++)
         {
             var square = new List<List<Block>>();
 
-            for (var z = 0; z < GlobalConstants.ChunkSize; z++)
+            for (var z = 0; z < GlobalConstants.ChunkSizeZ; z++)
             {
                 var list = new List<Block>();
 
@@ -27,10 +27,10 @@ public static class ChunkHelper
 
                     var rotation = new Quaternion(0, 0, 0, 0);
 
-                    list.Add(new Block(CubeFactory.Instance.GetRockBlock(position, rotation)));
+                    list.Add(new Block(CubeFactory.Instance.GetRockBlock(position, rotation), chunk));
                 }
 
-                for (var y = 3; y < GlobalConstants.ChunkSize - 1; y++)
+                for (var y = 3; y < 9; y++)
                 {
                     var position = new Vector3(x * 0.25f + chunkPosition.x,
                                                y * 0.25f + chunkPosition.y,
@@ -38,16 +38,16 @@ public static class ChunkHelper
 
                     var rotation = new Quaternion(0, 0, 0, 0);
 
-                    list.Add(new Block(CubeFactory.Instance.GetDirtBlock(position, rotation)));
+                    list.Add(new Block(CubeFactory.Instance.GetDirtBlock(position, rotation), chunk));
                 }
 
                 var positionGrass = new Vector3(x * 0.25f + chunkPosition.x,
-                           (GlobalConstants.ChunkSize - 1) * 0.25f + chunkPosition.y,
+                           (9) * 0.25f + chunkPosition.y,
                            z * 0.25f + chunkPosition.z);
 
                 var rotationGrass = new Quaternion(0, 0, 0, 0);
 
-                list.Add(new Block(CubeFactory.Instance.GetGrassBlock(positionGrass, rotationGrass)));
+                list.Add(new Block(CubeFactory.Instance.GetGrassBlock(positionGrass, rotationGrass), chunk));
 
                 square.Add(list);
             }

@@ -6,30 +6,33 @@ using UnityEngine;
 
 
 public class Chunk
+{
+    public Vector3 Location { get; private set; }
+
+    public List<List<List<Block>>> Content { get; private set; }
+
+    public List<Block> ContentInRow
     {
-        public List<List<List<Block>>> Content { get; private set; }
-
-        public List<Block> ContentInRow
+        get
         {
-            get
+            var result = new List<Block>();
+
+            foreach (var square in Content)
             {
-                var result = new List<Block>();
-
-                foreach (var square in Content)
+                foreach (var list in square)
                 {
-                    foreach (var list in square)
-                    {
-                        result.AddRange(list);
-                    }
+                    result.AddRange(list);
                 }
-
-                return result;
             }
-        }
 
-        public Chunk(Vector3 position)
-        {
-            Content = ChunkHelper.GetEmptyChunkContent(position);
+            return result;
         }
     }
+
+    public Chunk(Vector3 location)
+    {
+        Location = location;
+        Content = ChunkHelper.GetDefaultChunkContent(Location, this);
+    }
+}
 
